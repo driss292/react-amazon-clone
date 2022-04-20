@@ -1,11 +1,7 @@
-import "./App.css";
+import "./App.scss";
 
 function App() {
-  return (
-    <div>
-      Hello from <a href="https://www.lereacteur.io">Le Reacteur !</a>
-    </div>
-  );
+  return <div>AMAZON-CLONE</div>;
 }
 
 export default App;
