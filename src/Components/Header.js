@@ -6,11 +6,16 @@ import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
+import { useStateValue } from "../StateProvider";
+
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 
 export default function Header() {
+  const [{ basket }, dispatch] = useStateValue();
   const [user, setUser] = useState({});
+  // const [toggleMenu, setToggleMenu] = useState(false);
+  // const [largeur, setLargeur] = useState(window.innerWidth);
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
@@ -21,11 +26,13 @@ export default function Header() {
   };
   return (
     <div className="header">
-      <img
-        className="header_logo"
-        src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
-        alt=""
-      />
+      <Link to="/">
+        <img
+          className="header_logo"
+          src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+          alt=""
+        />
+      </Link>
       <div className="header_search">
         <input className="header_searchInput" type="text" />
         {/* SEARCH LOGO */}
@@ -50,10 +57,14 @@ export default function Header() {
           <span className="header_optionLineOne">Your</span>
           <span className="header_optionLineTwo">Prime</span>
         </div>
-        <div className="header_optionBasket">
-          <ShoppingBasketIcon />
-          <span className="header_optionLineTwo header_basketCount">0</span>
-        </div>
+        <Link to="/checkout">
+          <div className="header_optionBasket">
+            <ShoppingBasketIcon />
+            <span className="header_optionLineTwo header_basketCount">
+              {basket?.length}
+            </span>
+          </div>
+        </Link>
       </div>
     </div>
   );

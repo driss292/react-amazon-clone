@@ -1,5 +1,7 @@
 import React from "react";
 import Product from "../Components/Product";
+import Header from "../Components/Header";
+
 import "./scss/_Home.scss";
 
 // import Header from "../Components/Header";
@@ -7,7 +9,7 @@ import "./scss/_Home.scss";
 export default function Home() {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <div className="home">
         <div className="home_container">
           <img
