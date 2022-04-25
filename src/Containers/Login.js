@@ -19,6 +19,9 @@ export default function Login() {
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
       console.log(user);
+      if (user) {
+        navigate("/");
+      }
     } catch (error) {
       alert(error.message);
     }

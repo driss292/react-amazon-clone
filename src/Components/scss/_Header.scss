@@ -50,15 +50,15 @@
         font-size: 13px;
       }
     }
-    .header_optionBasket {
-      display: flex;
-      align-items: center;
-      color: white;
-      margin-top: 4px;
-      .header_basketCount {
-        margin-left: 10px;
-        margin-right: 10px;
-      }
+  }
+  .header_optionBasket {
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-top: 4px;
+    .header_basketCount {
+      margin-left: 10px;
+      margin-right: 10px;
     }
   }
 }

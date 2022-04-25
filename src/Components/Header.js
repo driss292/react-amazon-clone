@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Components/scss/_Header.scss";
 
 import { Link } from "react-router-dom";
@@ -11,19 +11,38 @@ import { useStateValue } from "../StateProvider";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default function Header() {
   const [{ basket }, dispatch] = useStateValue();
   const [user, setUser] = useState({});
-  // const [toggleMenu, setToggleMenu] = useState(false);
-  // const [largeur, setLargeur] = useState(window.innerWidth);
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const [largeur, setLargeur] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const changeWidth = () => {
+      setLargeur(window.innerWidth);
+    };
+    window.addEventListener("resize", changeWidth);
+
+    return () => {
+      window.removeEventListener("resize", changeWidth);
+    };
+  }, []);
+  const toggleNav = () => {
+    setToggleMenu(!toggleMenu);
+  };
+
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
+
   const handleAuthentication = () => {
     if (user) {
       auth.signOut();
     }
   };
+
   return (
     <div className="header">
       <Link to="/">
@@ -57,15 +76,18 @@ export default function Header() {
           <span className="header_optionLineOne">Your</span>
           <span className="header_optionLineTwo">Prime</span>
         </div>
-        <Link to="/checkout">
-          <div className="header_optionBasket">
-            <ShoppingBasketIcon />
-            <span className="header_optionLineTwo header_basketCount">
-              {basket?.length}
-            </span>
-          </div>
-        </Link>
       </div>
+      {/* <button onClick={toggleNav}>
+        <FontAwesomeIcon icon="fa-solid fa-user" />
+      </button> */}
+      <Link to="/checkout">
+        <div className="header_optionBasket">
+          <ShoppingBasketIcon />
+          <span className="header_optionLineTwo header_basketCount">
+            {basket?.length}
+          </span>
+        </div>
+      </Link>
     </div>
   );
 }

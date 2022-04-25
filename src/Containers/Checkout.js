@@ -2,6 +2,8 @@ import React from "react";
 import Header from "../Components/Header";
 import CheckoutProduct from "../Components/CheckoutProduct";
 import { useStateValue } from "../StateProvider";
+import Subtotal from "../Components/Subtotal";
+// import { getBasketTotal } from "../Components/Subtotal";
 import "./scss/_Checkout.scss";
 
 export default function Checkout() {
@@ -34,6 +36,9 @@ export default function Checkout() {
               );
             })}
           </div>
+        </div>
+        <div className="checkout_right">
+          <Subtotal />
         </div>
       </div>
     </>
