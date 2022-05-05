@@ -3,13 +3,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBCYKoTWAE8dU35eEDRtu61cy4r-lpr6ZE",
-  authDomain: "clone-dk-3483c.firebaseapp.com",
-  projectId: "clone-dk-3483c",
-  storageBucket: "clone-dk-3483c.appspot.com",
-  messagingSenderId: "23570667614",
-  appId: "1:23570667614:web:d80e7da5524ed01bf07ccf",
-  measurementId: "G-2WW94QHST7",
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECRT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.env.MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
