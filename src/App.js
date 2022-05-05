@@ -29,6 +29,7 @@ function App() {
         });
       } else {
         // The user is logged out
+        // The user is logged out
         dispatch({
           type: "SET_USER",
           user: null,
